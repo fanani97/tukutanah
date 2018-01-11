@@ -1,0 +1,39 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_soil"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_review_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15px"
+                android:paddingTop="15px"
+                android:text="Name : Jazz RS 2010"
+                android:textColor="@color/text_judul"
+                android:textSize="45px"
+                android:padding="10dp"/>
+
+            <TextView
+                android:id="@+id/txt_review_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price : Rp. 200 jt"
+                android:textSize="40px"
+                android:paddingLeft="10px"/>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

@@ -1,0 +1,64 @@
+<resources>
+    <string name="app_name">TukuTanah</string>
+
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">TukuTanah</string>
+    <string name="slide_1_desc">The easiest way to look ground for sale in Malang!</string>
+
+    <string name="slide_2_title">Get Your Ground</string>
+    <string name="slide_2_desc">Choose your ground and call!</string>
+
+    <string name="slide_3_title">Great Way to Find Ground</string>
+    <string name="slide_3_desc">Call and negotiate with the owner!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+
+    <string name="openDrawer">Drawer dibuka</string>
+    <string name="closeDrawer">Drawer ditutup</string>
+    <string name="navigation_view_item_1">Home</string>
+    <string name="navigation_view_item_2">List</string>
+    <string name="navigation_view_item_3">About</string>
+    <string name="navigation_view_item_4">Help</string>
+
+    <!-- Help Activity -->
+    <string name="help_ket">Hubungi Kami</string>
+    <string name="help_alamat1">Jl. Danau Ranau VIII H4 D5</string>
+    <string name="help_alamat2">Sawojajar - Malang</string>
+    <string name="help_telp">Telp : +6285850666927</string>
+    <string name="help_judul">Tuku Tanah</string>
+    <string name="help_ket2">Hubungi kami melalui email di bawah ini atau silahkan bergabung di media sosial resmi TukuTanah disini :</string>
+    <string name="help_email">Email        : admin@tukutanah.com</string>
+    <string name="help_twitter">Twitter    : http://tukutanah/twitter</string>
+    <string name="help_fb">Facebook    : http://tukutanah/facebook</string>
+    <string name="help_ig">Instagram    : http://tukutanah/instagram</string>
+    <string name="help_ket3">Pemasangan iklan TukuTanah Account Executive (AE)</string>
+    <string name="help_ket4">Silahkan hubungi nomor</string>
+    <string name="help_ket5">telepon dibawah atau via email</string>
+    <string name="help_email2">ke : marketing@tukutanah.net</string>
+    <string name="help_nama">Anisa Shihhatin S.</string>
+    <string name="help_telp2">085850666927</string>
+
+    <!-- About Activity -->
+    <string name="about_ket">About Us</string>
+    <string name="about_app">Aplikasi ini dibuat oleh mahasiswa STIKI Malang dengan tujuan memenuhi tugas akhir semester
+    mata pelajaran "Pemrograman Perangkat Bergerak" dengan Dosen pengampu Bapak Subari S.Kom</string>
+    <string name="about_nama">Anisa Shihhatin Sholihah</string>
+    <string name="about_nrp">NRP : 161116038</string>
+    <string name="about_alamat">Jl. Tidar No.100, Karangbesuki, Sukun, Kota Malang, Jawa Timur</string>
+    <string name="about_kode">65149</string>
+    <string name="about_email">stiki@stiki.ac.id</string>
+    <string name="about_telp">(0341) 560823</string>
+    <string name="about_kelas">Kelas : Profesional</string>
+    <string name="about_link">STIKI Malang : <a href="http://stiki.ac.id/">http://stiki.ac.id/</a></string>
+
+    <string name="lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="unable_create_map">Yes</string>
+    <string name="txt_Show">Progressing Please wait...</string>
+</resources>
