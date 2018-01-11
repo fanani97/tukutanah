@@ -1,19 +1,7 @@
 package tukutanah.uas.anisashihhatin.com.tukutanah.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-public class TanahModel{ //digunakan untuk menyimpan data setelah mengambil dari API
+public class TanahModel { //digunakan untuk menyimpan data setelah mengambil dari API
     private String id;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     private String soilImage;
     private String soilName;
     private String soilPrice;
@@ -23,9 +11,34 @@ public class TanahModel{ //digunakan untuk menyimpan data setelah mengambil dari
     private String soilCity;
     private String soilSertificate;
     private String soilDescription;
-    private int soilLat;
-    private int soilLng;
+    private double soilLat;
+    private double soilLng;
     private String soilDistrict;
+
+    public TanahModel(String id, String soilImage, String soilName, String soilPrice, String soilAddress, String soilPhone, String soilLarge,
+                      String soilCity, String soilSertificate, String soilDescription, double soilLat, double soilLng, String soilDistrict) {
+        this.id = id;
+        this.soilImage = soilImage;
+        this.soilName = soilName;
+        this.soilPrice = soilPrice;
+        this.soilAddress = soilAddress;
+        this.soilPhone = soilPhone;
+        this.soilLarge = soilLarge;
+        this.soilCity = soilCity;
+        this.soilSertificate = soilSertificate;
+        this.soilDescription = soilDescription;
+        this.soilLat = soilLat;
+        this.soilLng = soilLng;
+        this.soilDistrict = soilDistrict; //digunakan untuk memasukkan data kedalam list berdasarkan urutan pendeklarasian object disamping
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getSoilImage() {
         return soilImage;
@@ -99,19 +112,19 @@ public class TanahModel{ //digunakan untuk menyimpan data setelah mengambil dari
         this.soilPhone = soilPhone;
     }
 
-    public int getSoilLat() {
+    public double getSoilLat() {
         return soilLat;
     }
 
-    public void setSoilLat(int soilLat) {
+    public void setSoilLat(double soilLat) {
         this.soilLat = soilLat;
     }
 
-    public int getSoilLng() {
+    public double getSoilLng() {
         return soilLng;
     }
 
-    public void setSoilLng(int soilLng) {
+    public void setSoilLng(double soilLng) {
         this.soilLng = soilLng;
     }
 
@@ -121,23 +134,5 @@ public class TanahModel{ //digunakan untuk menyimpan data setelah mengambil dari
 
     public void setSoilDistrict(String soilDistrict) {
         this.soilDistrict = soilDistrict;
-    }
-
-    public TanahModel(String id, String soilImage, String soilName, String soilPrice, String soilAddress, String soilPhone, String soilLarge,
-                      String soilCity, String soilSertificate, String soilDescription, int soilLat, int soilLng, String soilDistrict) {
-        this.id = id;
-        this.soilImage = soilImage;
-        this.soilName = soilName;
-        this.soilPrice = soilPrice;
-        this.soilAddress = soilAddress;
-        this.soilPhone = soilPhone;
-        this.soilLarge = soilLarge;
-        this.soilCity = soilCity;
-        this.soilSertificate = soilSertificate;
-        this.soilDescription = soilDescription;
-        this.soilLat = soilLat;
-        this.soilLng = soilLng;
-        this.soilDistrict = soilDistrict; //digunakan untuk memasukkan data kedalam list berdasarkan urutan pendeklarasian object disamping
-
     }
 }

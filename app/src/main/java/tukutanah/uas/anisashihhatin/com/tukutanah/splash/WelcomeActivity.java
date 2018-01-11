@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +18,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import tukutanah.uas.anisashihhatin.com.tukutanah.activity.HomeActivity;
 import tukutanah.uas.anisashihhatin.com.tukutanah.R;
+import tukutanah.uas.anisashihhatin.com.tukutanah.activity.HomeActivity;
 import tukutanah.uas.anisashihhatin.com.tukutanah.activity.LoginActivity;
+import tukutanah.uas.anisashihhatin.com.tukutanah.manager.AppSharedPreferences;
 import tukutanah.uas.anisashihhatin.com.tukutanah.tools.PrefManager;
 
 public class WelcomeActivity extends AppCompatActivity { //diguankan untuk mendeklarasikan activity splash screen
@@ -60,9 +61,9 @@ public class WelcomeActivity extends AppCompatActivity { //diguankan untuk mende
         // layouts of all welcome sliders
         // add few more layouts if you want
         layouts = new int[]{
-                R.layout.welcome_slide1,
-                R.layout.welcome_slide2,
-                R.layout.welcome_slide3};
+            R.layout.welcome_slide1,
+            R.layout.welcome_slide2,
+            R.layout.welcome_slide3};
 
         // adding bottom dots
         addBottomDots(0);
@@ -122,7 +123,12 @@ public class WelcomeActivity extends AppCompatActivity { //diguankan untuk mende
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(false);
-        startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        String loginName = AppSharedPreferences.getStringValue(this, "NAME");
+        if (loginName != null) {
+            startActivity(new Intent(WelcomeActivity.this, HomeActivity.class));
+        } else {
+            startActivity(new Intent(WelcomeActivity.this, LoginActivity.class));
+        }
         finish();
     }
 

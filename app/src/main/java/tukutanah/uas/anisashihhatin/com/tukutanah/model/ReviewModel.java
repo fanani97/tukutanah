@@ -2,6 +2,13 @@ package tukutanah.uas.anisashihhatin.com.tukutanah.model;
 
 public class ReviewModel {
 
+    private String name, comment;
+
+    public ReviewModel(String name, String comment){
+        this.name = name;
+        this.comment = comment;
+    }
+
     public String getName() {
         return name;
     }
@@ -18,10 +25,4 @@ public class ReviewModel {
         this.comment = comment;
     }
 
-    public String name, comment;
-
-    public ReviewModel(String name, String comment){
-        this.name = name;
-        this.comment = comment;
-    }
 }

@@ -15,11 +15,11 @@ import tukutanah.uas.anisashihhatin.com.tukutanah.model.ReviewModel;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder>{
 
-    private List<ReviewModel> reviewModel;
+    private List<ReviewModel> data;
     private Context context;
 
-    public ReviewAdapter(List<ReviewModel> reviewModel, Context context) { //deklarasi model dan context
-        this.reviewModel = reviewModel;
+    public ReviewAdapter(List<ReviewModel> data, Context context) { //deklarasi model dan context
+        this.data = data;
         this.context = context;
     }
 
@@ -32,27 +32,21 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        ReviewModel review = reviewModel.get(position);
-
-        System.out.println("COK A" + review);
-
-        holder.name.setText("FANANI");
+        ReviewModel review = data.get(position);
+        holder.name.setText(review.getName());
         holder.comment.setText(review.getComment());
-
     }
 
     @Override
     public int getItemCount() { // untuk menghitung jumlah data di model tanah
-        return null != reviewModel ? reviewModel.size() : 0;
+        return data != null ? data.size() : 0;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView name, comment;
 
-        public TextView name, comment;
-
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-
             name = (TextView) itemView.findViewById(R.id.txt_review_name);
             comment = (TextView) itemView.findViewById(R.id.txt_review_comment);
         }

@@ -46,10 +46,8 @@ public class HomeViewPagerAdapter extends PagerAdapter{
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) { //penghapusan item setelah di lihat
-
         ViewPager vp = (ViewPager) container; //deklarasi view pager
         View view = (View) object; //deklarasi view
         vp.removeView(view); //hapus view pager
-
     }
 }

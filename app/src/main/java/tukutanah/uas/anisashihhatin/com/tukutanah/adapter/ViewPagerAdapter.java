@@ -39,7 +39,6 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageView imageView = (ImageView) view.findViewById(R.id.imageView); //deklarasi imageview
         imageView.setImageResource(images[position]); //deklarasi image dan posisinya
 
-
         ViewPager vp = (ViewPager) container;
         vp.addView(view, 0);
         return view;
