@@ -70,8 +70,8 @@ public class TanahAdapter extends RecyclerView.Adapter<TanahAdapter.ViewHolder> 
                 String passCity = tanahModel.getSoilCity(); //mengisi passCity dengan data pada model
                 String passSertifivate = tanahModel.getSoilSertificate(); //mengisi passSertifivate dengan data pada model
                 String passDesc = tanahModel.getSoilDescription(); //mengisi passDesc dengan data pada model
-                int passLat = tanahModel.getSoilLat(); //mengisi passLat dengan data pada model
-                int passLng = tanahModel.getSoilLng(); //mengisi passLng dengan data pada model
+                double passLat = tanahModel.getSoilLat(); //mengisi passLat dengan data pada model
+                double passLng = tanahModel.getSoilLng(); //mengisi passLng dengan data pada model
                 String passDistrict = tanahModel.getSoilDistrict(); //mengisi passDistrict dengan data pada model
 
                 Intent intent = new Intent(view.getContext(), DetailTanahActivity.class); //fungsi untuk memindah activity

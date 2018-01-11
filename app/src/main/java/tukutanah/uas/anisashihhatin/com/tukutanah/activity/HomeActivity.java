@@ -2,13 +2,13 @@ package tukutanah.uas.anisashihhatin.com.tukutanah.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +22,7 @@ import java.util.TimerTask;
 
 import tukutanah.uas.anisashihhatin.com.tukutanah.R;
 import tukutanah.uas.anisashihhatin.com.tukutanah.adapter.HomeViewPagerAdapter;
+import tukutanah.uas.anisashihhatin.com.tukutanah.manager.AppSharedPreferences;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -34,8 +35,8 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
 
-    private SharedPreferences pre ;
-    private SharedPreferences.Editor editor ;
+    private SharedPreferences pre;
+    private SharedPreferences.Editor editor;
     private TextView txtName;
 
     @Override
@@ -55,24 +56,21 @@ public class HomeActivity extends AppCompatActivity {
         timer.scheduleAtFixedRate(new MyTimeTest(), 2000, 4000);
 
         txtName = (TextView) findViewById(R.id.txt_name);
-        try {
-            pre = getSharedPreferences("store",MODE_PRIVATE);
-            String name =  pre.getString("name",null);
-            if (name.equals(""))
-            {
-                Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(i);
-            }
-            else
-            {
-                txtName.setText("Wellcome, " + name);
-            }
-        }
-        catch (Exception e){
+        txtName.setText("Welcome, " + AppSharedPreferences.getStringValue(this, "NAME"));
 
-            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
-            startActivity(i);
-        }
+//        try {
+//            pre = getSharedPreferences("store", MODE_PRIVATE);
+//            String name = pre.getString("name", null);
+//            if (name.equals("")) {
+//                Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+//                startActivity(i);
+//            } else {
+//                txtName.setText("Welcome, " + name);
+//            }
+//        } catch (Exception e) {
+//            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+//            startActivity(i);
+//        }
 
         for (int i = 0; i < dotscount; i++) { //perulangan untuk jumlah dots sesuai jumlah image yg di pasang
             dots[i] = new ImageView(this);
@@ -168,20 +166,19 @@ public class HomeActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
 
 
-
     }
 
-    public class MyTimeTest extends TimerTask{
+    public class MyTimeTest extends TimerTask {
         @Override
         public void run() {
             HomeActivity.this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(viewPager.getCurrentItem() == 0){ //pemberian statement untuk slider gambar 1 ke 2 dst
+                    if (viewPager.getCurrentItem() == 0) { //pemberian statement untuk slider gambar 1 ke 2 dst
                         viewPager.setCurrentItem(1);
-                    }else if(viewPager.getCurrentItem() == 1){
+                    } else if (viewPager.getCurrentItem() == 1) {
                         viewPager.setCurrentItem(2);
-                    }else{
+                    } else {
                         viewPager.setCurrentItem(0);
                     }
                 }

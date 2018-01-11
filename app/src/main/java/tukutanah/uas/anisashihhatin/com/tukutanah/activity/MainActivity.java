@@ -2,17 +2,16 @@ package tukutanah.uas.anisashihhatin.com.tukutanah.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,14 +19,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-
-
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.Response;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,11 +31,10 @@ import java.util.List;
 
 import tukutanah.uas.anisashihhatin.com.tukutanah.R;
 import tukutanah.uas.anisashihhatin.com.tukutanah.adapter.TanahAdapter;
-import tukutanah.uas.anisashihhatin.com.tukutanah.manager.AppController;
 import tukutanah.uas.anisashihhatin.com.tukutanah.model.TanahModel;
 import tukutanah.uas.anisashihhatin.com.tukutanah.tools.SpacesItemDecorationGridView;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewCar;
     private StaggeredGridLayoutManager mGridViewLayoutManager;
@@ -50,7 +45,7 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout drawerLayout;
     private LinearLayout item_filter;
     private ProgressDialog pDialog;
-    ArrayList<HashMap<String, String>> soilList;
+    private List<HashMap<String, String>> soilList;
     private String TAG = MainActivity.class.getSimpleName();
     private String jsonResponse;
     private static String url = "https://tukutanah-9ce2.restdb.io/rest/list-tanah?apikey=863c530719b214bc1bbe4cb9a39f84c8e75d3";
@@ -61,9 +56,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         soilList = new ArrayList<>();
-
         recyclerViewCar = (RecyclerView) findViewById(R.id.recyclerview_car);
-
         mAdapter = new TanahAdapter(soilModelList, this); //inisialisasi adapter
         recyclerViewCar.setHasFixedSize(true); //set size adapter
         mGridViewLayoutManager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);//inisialisasi decorasi untuk grid
@@ -177,58 +170,41 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void getData() {
-        JsonArrayRequest req = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.d(TAG, response.toString());
-
-                try {
-                    // Parsing json array response
-                    // loop through each json object
-                    jsonResponse = "";
-                    for (int i = 0; i < response.length(); i++) { //digunakan untuk perulangan data array
-
-                        JSONObject c = (JSONObject) response.get(i);
-
-                        String id = c.getString("id_tanah"); //digunakan untuk mengambil array object di API
-                        String name = c.getString("name");
-                        String image = c.getString("image");
-                        String price = c.getString("price");
-                        String address = c.getString("adrress");
-                        String phone = c.getString("phone");
-                        String large = c.getString("large");
-                        String city = c.getString("city");
-                        String sertificate = c.getString("sertificate");
-                        String description = c.getString("description");
-                        int lat = c.getInt("latitude");
-                        int lng = c.getInt("longitude");
-                        String district = c.getString("districts");
-
-                        Log.e(TAG, "KENEK O" + c);
-                        soilModelList.add(new TanahModel(id, image, name, price, address, phone, large, city,sertificate, description, lat, lng, district));
+        Ion.with(this)
+            .load(url)
+            .asJsonArray()
+            .withResponse()
+            .setCallback(new FutureCallback<Response<JsonArray>>() {
+                @Override
+                public void onCompleted(Exception e, Response<JsonArray> response) {
+                    int code = response.getHeaders().code();
+                    if(code == 200){
+                        JsonArray result = response.getResult();
+                        for (int i = 0; i < result.size(); i++) { //digunakan untuk perulangan data array
+                            JsonObject data = result.get(i).getAsJsonObject();
+                            String id = data.get("id_tanah").getAsString(); //digunakan untuk mengambil array object di API
+                            String name = data.get("name").getAsString();
+                            String image = data.get("image").getAsString();
+                            String price = data.get("price").getAsString();
+                            String address = data.get("adrress").getAsString();
+                            String phone = data.get("phone").getAsString();
+                            String large = data.get("large").getAsString();
+                            String city = data.get("city").getAsString();
+                            String sertificate = data.get("sertificate").getAsString();
+                            String description = data.get("description").getAsString();
+                            double lat = data.get("latitude").getAsDouble();
+                            double lng = data.get("longitude").getAsDouble();
+                            String district = data.get("districts").getAsString();
+                            soilModelList.add(new TanahModel(id, image, name, price, address, phone, large, city,sertificate, description, lat, lng, district));
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }else{
+                        Toast.makeText(getApplicationContext(),
+                            "Error "+code+": ", Toast.LENGTH_SHORT).show();
                     }
-                    mAdapter.notifyDataSetChanged();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),
-                            "Error: " + e.getMessage(),
-                            Toast.LENGTH_LONG).show();
+
                 }
-
-//                        hidepDialog();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG, "Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-//                hidepDialog();
-            }
-        });
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(req);
+            });
     }
 
 }
